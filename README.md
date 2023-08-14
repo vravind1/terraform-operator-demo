@@ -1,5 +1,6 @@
 # Terraform Kubernetes Operator 
-This repository contains instructions and necessary configuration files to manage TFC resources using Kubernetes Operator.
+This repository contains instructions and necessary configuration files to manage TFC resources using Kubernetes Operator. \
+For more details, check this official [page.](https://github.com/hashicorp/terraform-cloud-operator)
 
 ## Prerequisites
 It expects you already have a Kubernetes cluster and ```kubectl``` installed.
