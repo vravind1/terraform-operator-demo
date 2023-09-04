@@ -21,7 +21,7 @@ This will create a new namespace 'tfc-operator-system'
 ```
 helm install \
   demo hashicorp/terraform-cloud-operator \
-  --version 2.0.0-beta7 \
+  --version 2.0.0-beta8 \
   --namespace tfc-operator-system \
   --create-namespace
 ```

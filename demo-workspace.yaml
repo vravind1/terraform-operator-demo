@@ -1,0 +1,21 @@
+apiVersion: app.terraform.io/v1alpha2
+kind: Workspace
+metadata:
+  name: demo-workspace
+spec:
+  organization: vishnu-test-org # replace with your org name
+  token:
+    secretKeyRef:
+      name: tfc-operator
+      key: token
+  name: demo-workspace
+  description: Workspace created using k8s operator
+  applyMethod: auto
+  executionMode: remote
+  terraformVariables:
+    - name: bucket
+      hcl: true
+      value: "operator-bucket"
+    - name: region
+      hcl: true
+      value: "us-east-2"

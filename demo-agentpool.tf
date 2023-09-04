@@ -1,9 +1,13 @@
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}
+
 resource "kubernetes_manifest" "agentpool_demo_agent_pool" {
   manifest = {
     "apiVersion" = "app.terraform.io/v1alpha2"
-    "kind" = "AgentPool"
+    "kind"       = "AgentPool"
     "metadata" = {
-      "name" = "demo-agent-pool"
+      "name"      = "demo-agent-pool"
       "namespace" = "default"
     }
     "spec" = {
@@ -13,7 +17,7 @@ resource "kubernetes_manifest" "agentpool_demo_agent_pool" {
           "containers" = [
             {
               "image" = "hashicorp/tfc-agent:latest"
-              "name" = "tfc-agent"
+              "name"  = "tfc-agent"
             },
           ]
         }
@@ -23,11 +27,11 @@ resource "kubernetes_manifest" "agentpool_demo_agent_pool" {
           "name" = "demo-agent"
         },
       ]
-      "name" = "agent-pool-demo"
-      "organization" = "<tfc-org-name"
+      "name"         = "agent-pool-demo"
+      "organization" = "vishnu-test-org" # replace with your org name
       "token" = {
         "secretKeyRef" = {
-          "key" = "token"
+          "key"  = "token"
           "name" = "tfc-operator"
         }
       }

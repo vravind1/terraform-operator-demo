@@ -4,13 +4,13 @@ metadata:
   name: demo-agent-pool
 spec:
   name: agent-pool-demo
-  organization: <tfc-org-name>
+  organization: vishnu-test-org # replace with your org name
   token:
     secretKeyRef:
       name: tfc-operator
       key: token
   agentDeployment:
-    replicas: 3
+    replicas: 1
     spec:
       containers:
         - name: tfc-agent
