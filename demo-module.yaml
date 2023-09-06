@@ -13,7 +13,7 @@ spec:
     source: "vravind1/s3-simple/aws"
     version: "0.1.0"
   variables:
-    - name: bucket
+    - name: bucket_name
     - name: region
   workspace:
     name: demo-workspace

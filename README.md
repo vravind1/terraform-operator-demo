@@ -28,9 +28,42 @@ helm install \
 ```
 
 ### Create a new Secret
-Get TFC organization token and store it as a Kubernetes Secret
+Get TFC Team token and store it as a Kubernetes Secret 
 ```
 $ kubectl create secret generic tfc-operator --from-literal=token=<TFC-Org-Token>
+```
+
+## Workspace
+### Create Kubernetes Secret for AWS Credentials
+This can be later used as the Environment variables for the TFC workspace
+```
+$ kubectl create secret generic aws-access-id \
+  --from-literal=AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID_GOES_HERE>
+
+
+$ kubectl create secret generic aws-secret-access-key \
+  --from-literal=AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY_GOES_HERE>
+```
+
+Update the ```demo-workspace.yaml``` file with necessary Terraform variables and Environment variables
+
+Run the following command to create a TFC Workspace
+
+```
+$ kubectl apply -f demo-workspace.yaml
+```
+
+## Modules
+
+* ```demo.module.yaml``` file contains necessary configuration to issue a Plan and Apply 
+* This takes module name and version as the input along with the necessary variables
+
+### Can I execute a new Run without changing any Workspace or Module attributes?
+
+Run this following command
+
+```
+$ kubectl patch module demo-module --type=merge --patch '{"spec": {"restartedAt": "'`date -u -Iseconds`'"}}'
 ```
 
 ## Agents

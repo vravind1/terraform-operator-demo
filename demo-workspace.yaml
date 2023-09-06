@@ -13,9 +13,22 @@ spec:
   applyMethod: auto
   executionMode: remote
   terraformVariables:
-    - name: bucket
-      hcl: true
-      value: "operator-bucket"
+    - name: bucket_name
+      hcl: false
+      value: "operator-bucket-k8s-testing"
     - name: region
-      hcl: true
+      hcl: false
       value: "us-east-2"
+  environmentVariables:
+    - name: "AWS_ACCESS_KEY_ID"
+      sensitive: true
+      valueFrom: 
+        secretKeyRef:
+          name: aws-access-id
+          key: AWS_ACCESS_KEY_ID
+    - name: "AWS_SECRET_ACCESS_KEY"
+      sensitive: true
+      valueFrom:
+        secretKeyRef:
+          name: aws-secret-access-key
+          key: AWS_SECRET_ACCESS_KEY
