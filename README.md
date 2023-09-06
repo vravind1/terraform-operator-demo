@@ -30,7 +30,7 @@ helm install \
 ### Create a new Secret
 Get TFC Team token and store it as a Kubernetes Secret 
 ```
-$ kubectl create secret generic tfc-operator --from-literal=token=<TFC-Org-Token>
+$ kubectl create secret generic tfc-operator --from-literal=token=<TFC-Team-Token>
 ```
 
 ## Workspace
