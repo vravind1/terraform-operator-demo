@@ -3,17 +3,19 @@ kind: Module
 metadata:
   name: demo-module
 spec:
-  organization: vishnu-test-org # replace to your org name
+  organization: vishnu-test-org # replace with your org name
   token:
     secretKeyRef:
       name: tfc-operator
       key: token
-  name: this
+  name: demo-module
   module:
     source: "vravind1/s3-simple/aws"
-    version: "0.1.0"
+    version: "0.2.0"
   variables:
     - name: bucket_name
     - name: region
+  outputs:
+    - name: s3_bucket_arn
   workspace:
     name: demo-workspace
