@@ -1,0 +1,36 @@
+apiVersion: app.terraform.io/v1alpha2
+kind: Workspace
+metadata:
+  name: demo-workspace
+spec:
+  organization: vishnu-test-org # replace with your org name
+  token:
+    secretKeyRef:
+      name: tfc-operator
+      key: token
+  name: demo-workspace
+  description: Workspace created using k8s operator
+  applyMethod: auto
+  executionMode: agent
+  agentPool:
+      name: agent-pool-demo
+  terraformVariables:
+    - name: bucket_name
+      hcl: false
+      value: "operator-bucket-k8s-testing"
+    - name: region
+      hcl: false
+      value: "us-east-2"
+  environmentVariables:
+    - name: "AWS_ACCESS_KEY_ID"
+      sensitive: true
+      valueFrom: 
+        secretKeyRef:
+          name: aws-access-id
+          key: AWS_ACCESS_KEY_ID
+    - name: "AWS_SECRET_ACCESS_KEY"
+      sensitive: true
+      valueFrom:
+        secretKeyRef:
+          name: aws-secret-access-key
+          key: AWS_SECRET_ACCESS_KEY
